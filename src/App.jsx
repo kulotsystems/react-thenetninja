@@ -1,4 +1,3 @@
-import './App.css';
 import Home   from './Home.jsx';
 import Navbar from './Navbar.jsx';
 
