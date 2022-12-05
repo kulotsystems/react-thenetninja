@@ -6,7 +6,9 @@ const useFetch = (url) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(url)
+        const abortController = new AbortController();
+
+        fetch(url, { signal: abortController.signal })
             .then(response => {
                 if(!response.ok)
                     throw Error('Could not fetch blogs.');
@@ -19,10 +21,14 @@ const useFetch = (url) => {
                 setError(null);
             })
             .catch(error => {
-                setError(error.message);
-                setIsPending(false);
+                if(error.name !== 'AbortError') {
+                    setError(error.message);
+                    setIsPending(false);
+                }
             });
-    }, []);
+
+        return  () => abortController.abort();
+    }, [url]);
 
     return { data, isPending, error };
 };
