@@ -2,31 +2,24 @@ import { useState, useEffect } from 'react';
 import BlogList from './BlogList.jsx';
 
 const Home = () => {
-    const [blogs, setBlogs] = useState([
-        { id: 1, title: 'My New Website'  , body: 'lorem ipsum...', author: 'mario' },
-        { id: 2, title: 'Welcome Party!'  , body: 'lorem ipsum...', author: 'yoshi' },
-        { id: 3, title: 'Web Dev Top Tips', body: 'lorem ipsum...', author: 'mario' }
-    ]);
+    const [blogs, setBlogs] = useState([]);
 
     const [name, setName] = useState('mario');
 
-    const handleDelete = (id) => {
-        const newBlogs = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlogs);
-    };
-
     useEffect(() => {
-        console.log('use effect ran');
-        console.log(name);
-    }, [name]);
+        fetch('http://localhost:3000/blogs')
+            .then(response => {
+                return response.json();
+            })
+                .then((data) => {
+                    setBlogs(data);
+                });
+    }, []);
 
 
     return (
         <div className="home">
-            <BlogList blogs={blogs} title="All Blogs" handleDelete={handleDelete} />
-
-            <p><b>Name: </b>{ name }</p>
-            <button onClick={() => setName('luigi') }>Change Name</button>
+            { blogs && <BlogList blogs={blogs} title="All Blogs" /> }
         </div>
     );
 };
