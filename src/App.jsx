@@ -2,7 +2,9 @@ import Navbar from './Navbar.jsx';
 import Home   from './Home.jsx';
 import Create from './Create.jsx';
 import BlogDetails from './BlogDetails.jsx';
+import NotFound from './NotFound.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
                         <Route path="/" element={<Home />} exact/>
                         <Route path="/create" element={<Create />} exact/>
                         <Route path="/blogs/:id" element={<BlogDetails />} exact/>
+                        <Route path="*" element={<NotFound />} exact/>
                     </Routes>
                 </div>
             </div>

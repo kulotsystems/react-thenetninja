@@ -64,22 +64,26 @@
 }
 
 
-/* blog details page */
-.blog-details h2 {
+/* blog details page and not-found */
+.blog-details h2,
+.not-found h2 {
     font-size: 20px;
     color: #f1356d;
     margin-bottom: 10px;
 }
-.blog-details div {
+.blog-details div,
+.not-found p {
     margin: 20px 0;
 }
-.blog-details button {
+.blog-details button,
+.not-found a {
     background: #f1356d;
     color: #fff;
     border: 0;
     padding: 8px;
     border-radius: 8px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 
