@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import routes from './routes.js';
 
 const Create = () => {
     const [title, setTitle]   = useState('');
@@ -20,7 +21,7 @@ const Create = () => {
         }).then(response => {
             console.log(response);
             setIsPending(false);
-            navigate('/');
+            navigate(routes.home);
         });
      };
 
